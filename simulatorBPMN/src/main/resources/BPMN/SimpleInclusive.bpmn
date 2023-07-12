@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="SimpleInclusive" name="SimpleInclusive" isExecutable="true">
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="taskA" name="taskA"></userTask>
+    <userTask id="taskB" name="taskB"></userTask>
+    <userTask id="taskC" name="taskC"></userTask>
+    <userTask id="taskD" name="taskD"></userTask>
+    <inclusiveGateway id="inclusivegateway1" name="Inclusive Gateway"></inclusiveGateway>
+    <inclusiveGateway id="inclusivegateway2" name="Inclusive Gateway"></inclusiveGateway>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="taskA"></sequenceFlow>
+    <sequenceFlow id="flow2" sourceRef="taskA" targetRef="inclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="flow3" name="${num&gt;5}" sourceRef="inclusivegateway1" targetRef="taskC">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${num>5}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow4" name="${num&gt;0}" sourceRef="inclusivegateway1" targetRef="taskC">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${num>0}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="taskC" targetRef="inclusivegateway2"></sequenceFlow>
+    <sequenceFlow id="flow6" sourceRef="taskC" targetRef="inclusivegateway2"></sequenceFlow>
+    <sequenceFlow id="flow7" sourceRef="inclusivegateway2" targetRef="taskD"></sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="taskD" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_SimpleInclusive">
+    <bpmndi:BPMNPlane bpmnElement="SimpleInclusive" id="BPMNPlane_SimpleInclusive">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="79.0" y="224.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="taskA" id="BPMNShape_taskA">
+        <omgdc:Bounds height="55.0" width="105.0" x="181.0" y="214.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="taskB" id="BPMNShape_taskB">
+        <omgdc:Bounds height="55.0" width="105.0" x="491.0" y="160.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="taskC" id="BPMNShape_taskC">
+        <omgdc:Bounds height="55.0" width="105.0" x="491.0" y="280.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="taskD" id="BPMNShape_taskD">
+        <omgdc:Bounds height="55.0" width="105.0" x="792.0" y="217.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="inclusivegateway1" id="BPMNShape_inclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="361.0" y="221.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="inclusivegateway2" id="BPMNShape_inclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="700.0" y="224.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="960.0" y="227.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="114.0" y="241.0"></omgdi:waypoint>
+        <omgdi:waypoint x="181.0" y="241.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="286.0" y="241.0"></omgdi:waypoint>
+        <omgdi:waypoint x="361.0" y="241.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="381.0" y="221.0"></omgdi:waypoint>
+        <omgdi:waypoint x="381.0" y="187.0"></omgdi:waypoint>
+        <omgdi:waypoint x="543.0" y="280.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="18.0" width="100.0" x="380.0" y="170.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="381.0" y="261.0"></omgdi:waypoint>
+        <omgdi:waypoint x="381.0" y="307.0"></omgdi:waypoint>
+        <omgdi:waypoint x="491.0" y="307.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="18.0" width="100.0" x="380.0" y="319.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="543.0" y="280.0"></omgdi:waypoint>
+        <omgdi:waypoint x="720.0" y="186.0"></omgdi:waypoint>
+        <omgdi:waypoint x="720.0" y="224.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="596.0" y="307.0"></omgdi:waypoint>
+        <omgdi:waypoint x="720.0" y="307.0"></omgdi:waypoint>
+        <omgdi:waypoint x="720.0" y="264.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="740.0" y="244.0"></omgdi:waypoint>
+        <omgdi:waypoint x="792.0" y="244.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="897.0" y="244.0"></omgdi:waypoint>
+        <omgdi:waypoint x="960.0" y="244.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
